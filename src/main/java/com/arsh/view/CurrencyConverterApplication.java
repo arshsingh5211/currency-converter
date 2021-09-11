@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CurrencyConverterApplication {
 	private static final String PAIR_URL = "https://v6.exchangerate-api.com/v6/0a67f9f345849c95b80d4bdc/pair/";
 	private static final String BASE_URL = "https://api.exchangerate-api.com/v4/latest/";
-	private static final String USD_URL = "https://api.exchangerate-api.com/v4/latest/USD";
+	private static final String V4_URL = "https://api.exchangerate-api.com/v4/latest/";
 	private ConsoleService console;
 
 	public CurrencyConverterApplication (ConsoleService console) {
@@ -20,18 +20,16 @@ public class CurrencyConverterApplication {
 		int menuSelection;
 
 		ConsoleService consoleService = new ConsoleService();
-		ExchangeService exchangeService = new ExchangeService(USD_URL);
+		ExchangeService exchangeService = new ExchangeService(V4_URL);
 		//PairConversionService pairConversionService = new PairConversionService();
 
 		while (true) {
 			menuSelection = consoleService.printMainMenu();
 			if (menuSelection == 1) {
-				//ExchangeRate rates = exchangeRateService.getExchangeRates(consoleService.promptForBaseCode());
-				//if (rates != null) consoleService.printAllExchangeRates(rates);
+				consoleService.printAllCurrencyCodes(exchangeService.getExchangeRates("USD"));
 			}
 			else if (menuSelection == 2) {
-				ExchangeRates rates = exchangeService.getExchangeRates();
-				//System.out.println(exchangeService.getExchangeRates().getBase());
+				ExchangeRates rates = exchangeService.getExchangeRates(consoleService.promptForBaseCode());
 				if (rates != null) consoleService.printAllExchangeRates(rates);
 			}
 			/*else if (menuSelection == 3) {

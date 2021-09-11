@@ -12,9 +12,8 @@ public class ExchangeService {
         this.BASE_URL = BASE_URL;
     }
 
-    public ExchangeRates getExchangeRates() {
-        return restTemplate.getForObject(
-                "https://api.exchangerate-api.com/v4/latest/USD",
-                ExchangeRates.class);
+    public ExchangeRates getExchangeRates(String base) {
+        return restTemplate.getForObject(BASE_URL + base, ExchangeRates.class);
     }
+
 }

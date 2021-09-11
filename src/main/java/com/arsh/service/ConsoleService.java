@@ -4,6 +4,7 @@ import com.arsh.model.ExchangeRates;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,8 +20,8 @@ public class ConsoleService {
     public int printMainMenu() {
         int menuSelection;
         System.out.println("Welcome to Arsh's Currency Converter! Please make a selection: ");
-        System.out.println("1: List all exchange rates");
-        System.out.println("2: List all possible currencies");
+        System.out.println("1: List all possible currencies");
+        System.out.println("2: List all exchange rates");
         System.out.println("3: Convert a currency");
         System.out.println("0: Exit");
         System.out.print("\nPlease choose an option: ");
@@ -38,33 +39,41 @@ public class ConsoleService {
         System.out.println("--------------------------------------------");
         System.out.println("Exchange Rates for " + rates.getBase());
         System.out.println("--------------------------------------------");
-        for (Map.Entry <String, Double> entry : rates.getRates().entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        StringBuilder sb = new StringBuilder();
+        Iterator<Map.Entry<String, Double>> iter = rates.getRates().entrySet().iterator();
+        int count = 0;
+        while (iter.hasNext()) {
+            Map.Entry<String, Double> entry = iter.next();
+            String val = entry.getValue() + "";
+            while (val.length() < 7) val = val + " ";
+            sb.append(String.format("%10s", entry.getKey() + ": " + val + "\t\t"));
+            count++;
+            if (count % 8 == 0) sb.append("\n");
         }
+        System.out.println(sb.toString());
     }
 
     public void printAllCurrencyCodes(ExchangeRates rates) {
-        for (Map.Entry <String, Double> entry : rates.getRates().entrySet()) {
-            System.out.println(entry.getKey());
+        String[] keys = rates.getRates().keySet().toArray(String[]::new);
+        for (int i = 0; i < keys.length; i++) {
+            if (i % 15 == 0) System.out.println(keys[i]);
+            else System.out.print(keys[i] + " ");
         }
     }
 
-/*    public String promptForBaseCode () {
-        System.out.println("What currency would you like to start with?");
-        String baseCode = scanner.nextLine().toUpperCase();
-        return baseCode;
-    }*/
+    public String promptForBaseCode() {
+        System.out.print("What currency would you like to start with? ");
+        return scanner.next().toUpperCase();
+    }
 
-    public String promptForTargetCode () {
-        System.out.println("What currency would you like to convert to?");
-        String targetCode = scanner.nextLine().toUpperCase();
-        return targetCode;
+    public String promptForTargetCode() {
+        System.out.print("What currency would you like to convert to? ");
+        return scanner.nextLine().toUpperCase();
     }
 
     public BigDecimal promptForAmount () {
-        System.out.println("What amount would you like to convert?");
-        BigDecimal amount = scanner.nextBigDecimal();
-        return amount;
+        System.out.print("What amount would you like to convert?");
+        return scanner.nextBigDecimal();
     }
 
 /*    public void printPairConversion (PairConversion pair) {
