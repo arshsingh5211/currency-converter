@@ -1,9 +1,11 @@
 package com.arsh.service;
 
 import com.arsh.model.ExchangeRates;
+import com.arsh.model.PairConversion;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -76,7 +78,7 @@ public class ConsoleService {
         return scanner.nextBigDecimal();
     }
 
-/*    public void printPairConversion (PairConversion pair) {
+    public void printPairConversion (PairConversion pair) {
         System.out.println("");
         System.out.println("--------------------------------------------");
         System.out.println("Conversion Details");
@@ -87,9 +89,10 @@ public class ConsoleService {
             System.out.println("Base Code: " + pair.getBaseCode());
             System.out.println("Target Code: " + pair.getTargetCode());
             System.out.println("Conversion Rate: " + pair.getConversionRate());
-            System.out.println("Conversion Result: " + pair.getConversionResult());
+            System.out.println("Conversion Result: " +
+                    NumberFormat.getCurrencyInstance().format(pair.getConversionResult()));
         }
-    }*/
+    }
 
     public void next() {
         System.out.println("\nPress Enter to continue...");
