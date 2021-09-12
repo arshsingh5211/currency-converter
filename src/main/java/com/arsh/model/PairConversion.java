@@ -3,44 +3,44 @@ package com.arsh.model;
 import java.math.BigDecimal;
 
 public class PairConversion {
-    private String baseCode;
-    private String targetCode;
-    private double conversionRate;
-    private BigDecimal conversionResult;
+    private String base_code;
+    private String target_code;
+    private double conversion_rate;
+    private BigDecimal conversion_result;
 
-    public String getBaseCode() {
-        return baseCode;
+    public String getBase_code() {
+        return base_code;
     }
 
-    public void setBaseCode(String baseCode) {
-        this.baseCode = baseCode;
+    public void setBase_code(String base_code) {
+        this.base_code = base_code;
     }
 
-    public String getTargetCode() {
-        return targetCode;
+    public String getTarget_code() {
+        return target_code;
     }
 
-    public void setTargetCode(String targetCode) {
-        this.targetCode = targetCode;
+    public void setTarget_code(String target_code) {
+        this.target_code = target_code;
     }
 
-    public double getConversionRate() {
-        return conversionRate;
+    public double getConversion_rate() {
+        return conversion_rate;
     }
 
-    public void setConversionRate(double conversionRate) {
-        this.conversionRate = conversionRate;
+    public void setConversion_rate(double conversion_rate) {
+        this.conversion_rate = conversion_rate;
     }
 
     public BigDecimal calculateConversion(BigDecimal amount) {
-        return new BigDecimal(conversionRate).multiply(amount);
+        return new BigDecimal(conversion_rate).multiply(amount);
     }
 
-    public BigDecimal getConversionResult() {
-        return new BigDecimal("45.56");
+    public BigDecimal getConversion_result() {
+        return conversion_result;
     }
 
-    public void setConversionResult(BigDecimal conversionResult) {
-        this.conversionResult = conversionResult;
+    public void setConversion_result(BigDecimal conversion_result) {
+        this.conversion_result = conversion_result;
     }
 }

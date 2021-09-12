@@ -86,11 +86,11 @@ public class ConsoleService {
         if(pair == null){
             System.out.println("No conversions to print");
         } else {
-            System.out.println("Base Code: " + pair.getBaseCode());
-            System.out.println("Target Code: " + pair.getTargetCode());
-            System.out.println("Conversion Rate: " + pair.getConversionRate());
+            System.out.println("Base Code: " + pair.getBase_code());
+            System.out.println("Target Code: " + pair.getTarget_code());
+            System.out.println("Conversion Rate: " + pair.getConversion_rate());
             System.out.println("Conversion Result: " +
-                    NumberFormat.getCurrencyInstance().format(pair.getConversionResult()));
+                    NumberFormat.getCurrencyInstance().format(pair.getConversion_result()));
         }
     }
 
