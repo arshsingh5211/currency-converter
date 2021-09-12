@@ -8,16 +8,6 @@ public class ExchangeRates {
     private String timeLastUpdated;
     private Map<String, Double> rates;
 
-    public ExchangeRates() {
-    }
-
-    public ExchangeRates(String base, String date, String timeLastUpdated, Map<String, Double> rates) {
-        this.base = base;
-        this.date = date;
-        this.timeLastUpdated = timeLastUpdated;
-        this.rates = rates;
-    }
-
     public String getBase() {
         return base;
     }
