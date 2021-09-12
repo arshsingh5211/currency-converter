@@ -57,10 +57,11 @@ public class ConsoleService {
 
     public void printAllCurrencyCodes(ExchangeRates rates) {
         String[] keys = rates.getRates().keySet().toArray(String[]::new);
-        for (int i = 0; i < keys.length; i++) {
-            if (i % 15 == 0) System.out.println(keys[i]);
-            else System.out.print(keys[i] + " ");
+        for (int i = 1; i < keys.length; i++) { // start at 1 as we don't need the Base Code listed here
+            if (i % 15 == 0) System.out.printf("%10s%n", keys[i]);
+            else System.out.printf("%10s", keys[i]);
         }
+        System.out.println("\n\n");
     }
 
     public String promptForBaseCode() {
@@ -70,11 +71,11 @@ public class ConsoleService {
 
     public String promptForTargetCode() {
         System.out.print("What currency would you like to convert to? ");
-        return scanner.nextLine().toUpperCase();
+        return scanner.next().toUpperCase();
     }
 
-    public BigDecimal promptForAmount () {
-        System.out.print("What amount would you like to convert?");
+    public BigDecimal promptForAmount() {
+        System.out.print("What amount would you like to convert? ");
         return scanner.nextBigDecimal();
     }
 

@@ -21,7 +21,6 @@ public class CurrencyConverterApplication {
 
 	public static void main(String[] args) {
 		int menuSelection;
-
 		ConsoleService consoleService = new ConsoleService();
 		ExchangeService exchangeService = new ExchangeService(V4_URL, PAIR_URL);
 		//PairConversionService pairConversionService = new PairConversionService();
@@ -29,16 +28,17 @@ public class CurrencyConverterApplication {
 		while (true) {
 			menuSelection = consoleService.printMainMenu();
 			if (menuSelection == 1) {
-				consoleService.printAllCurrencyCodes(exchangeService.getExchangeRates("USD"));
+				consoleService.printAllCurrencyCodes(exchangeService.getExchangeRates(consoleService.promptForBaseCode()));
 			}
 			else if (menuSelection == 2) {
 				ExchangeRates rates = exchangeService.getExchangeRates(consoleService.promptForBaseCode());
 				if (rates != null) consoleService.printAllExchangeRates(rates);
 			}
 			else if (menuSelection == 3) {
-				//String base = consoleService.promptForBaseCode();
-				//String target = consoleService.promptForTargetCode();
-				PairConversion pair = exchangeService.getPairConversion("USD", "CAD", new BigDecimal("23.45"));
+				String base = consoleService.promptForBaseCode();
+				String target = consoleService.promptForTargetCode();
+				BigDecimal amount = consoleService.promptForAmount();
+				PairConversion pair = exchangeService.getPairConversion(base, target, amount);
 				if (pair != null) consoleService.printPairConversion(pair);
 			}
 			else if (menuSelection == 0) consoleService.exit();
