@@ -5,7 +5,9 @@ import com.arsh.model.PairConversion;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -90,8 +92,8 @@ public class ConsoleService {
             System.out.println("Base Code: " + pair.getBase_code());
             System.out.println("Target Code: " + pair.getTarget_code());
             System.out.println("Conversion Rate: " + pair.getConversion_rate());
-            System.out.println("Conversion Result: " +
-                    NumberFormat.getCurrencyInstance().format(pair.getConversion_result()));
+            System.out.println("Conversion Result: " + Currency.getInstance(pair.getTarget_code()).getSymbol() +
+                    NumberFormat.getInstance().format(pair.getConversion_result().setScale(2, RoundingMode.HALF_UP)));
         }
     }
 
